@@ -7,6 +7,13 @@ st.set_page_config(page_title="Government KPI Tool", layout="wide")
 st.title("📊 Government Programme KPI Suggestion Tool")
 st.markdown("Use this tool to generate SMART KPIs for various Government Programmes and Projects.")
 
+# COFOG sectors
+cofog_sectors = [
+    "Economic Affairs", "General Public Services", "Public Order and Safety",
+    "Environmental Protection", "Social Protection", "Education", "Health",
+    "Housing and Community Amenities", "Recreation, Culture, and Religion"
+]
+
 # Keyword-based logic for suggesting KPIs and outcomes based on sector, project title, and details
 def get_suggested_kpis_and_outcomes(cofog_sector, project_title, project_details):
     text = f"{project_title.lower()} {project_details.lower()}"
@@ -125,7 +132,33 @@ def get_suggested_kpis_and_outcomes(cofog_sector, project_title, project_details
     # Ensure unique KPIs
     sector_kpis = list(set(sector_kpis))
 
+    # Outcome statement
+    if program_or_project == "Program":
+        outcome_statement = f"The program will deliver: {outcomes.get(cofog_sector, 'Outcome customized based on program impact')}"
+    else:
+        outcome_statement = f"The project will deliver: {outcomes.get(cofog_sector, 'Outcome customized based on project impact')}"
+
     return {
         "KPIs": sector_kpis,
-        "Outcome": outcomes.get(cofog_sector, "Outcome customized based on project impact")
+        "Outcome": outcome_statement
     }
+
+# Sidebar input
+st.sidebar.header("Project Details")
+sector = st.sidebar.selectbox("Select Government Sector (COFOG)", cofog_sectors)
+program_or_project = st.sidebar.selectbox("Is this a Programme or Project?", ["Programme", "Project"])
+mda = st.sidebar.text_input("Enter MDA (Ministry, Department, or Agency)")
+project_title = st.sidebar.text_input("Enter Project Title")
+project_details = st.sidebar.text_area("Describe the Project")
+
+if st.sidebar.button("Generate KPIs"):
+    st.subheader(f"KPIs for {sector} - {programme_or_project}")
+    result = get_suggested_kpis_and_outcomes(sector, project_title, project_details, programme_or_project)
+
+    st.markdown("### Suggested Output-Based KPIs")
+    for kpi in result["KPIs"]:
+        st.write(f"- {kpi}")
+
+    st.markdown("### Expected Outcome Statement")
+    st.success(result["Outcome"])
+    st.markdown(f"**MDA:** {mda}")
