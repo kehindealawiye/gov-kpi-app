@@ -15,7 +15,7 @@ cofog_sectors = [
 ]
 
 # Keyword-based logic for suggesting KPIs and outcomes based on sector, project title, and details
-def get_suggested_kpis_and_outcomes(cofog_sector, project_title, project_details):
+def get_suggested_kpis_and_outcomes(cofog_sector, project_title, project_details, programme_or_project):
     text = f"{project_title.lower()} {project_details.lower()}"
 
     base_kpis = {
@@ -133,8 +133,8 @@ def get_suggested_kpis_and_outcomes(cofog_sector, project_title, project_details
     sector_kpis = list(set(sector_kpis))
 
     # Outcome statement
-    if program_or_project == "Program":
-        outcome_statement = f"The program will deliver: {outcomes.get(cofog_sector, 'Outcome customized based on program impact')}"
+    if programme_or_project == "Programme":
+        outcome_statement = f"The program will deliver: {outcomes.get(cofog_sector, 'Outcome customized based on programme impact')}"
     else:
         outcome_statement = f"The project will deliver: {outcomes.get(cofog_sector, 'Outcome customized based on project impact')}"
 
@@ -146,7 +146,7 @@ def get_suggested_kpis_and_outcomes(cofog_sector, project_title, project_details
 # Sidebar input
 st.sidebar.header("Project Details")
 sector = st.sidebar.selectbox("Select Government Sector (COFOG)", cofog_sectors)
-program_or_project = st.sidebar.selectbox("Is this a Programme or Project?", ["Programme", "Project"])
+programme_or_project = st.sidebar.selectbox("Is this a Programme or Project?", ["Programme", "Project"])
 mda = st.sidebar.text_input("Enter MDA (Ministry, Department, or Agency)")
 project_title = st.sidebar.text_input("Enter Project Title")
 project_details = st.sidebar.text_area("Describe the Project")
