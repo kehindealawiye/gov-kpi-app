@@ -7,47 +7,49 @@ st.set_page_config(page_title="Government KPI Directory", layout="wide")
 st.markdown(
     """
     <style>
-        body {
-            background-color: #001f3f; /* Navy blue background */
-            color: white;
-        }
         .stApp {
-            background-color: #001f3f !important; /* Ensure background applies to full app */
+            background-color: #001f3f !important; /* Navy blue background */
         }
+        /* Make all body text white */
+        html, body, [class*="css"]  {
+            color: white !important;
+        }
+        /* Title and subheader white text */
+        h1, h2, h3, h4 {
+            color: white !important;
+        }
+        /* Label for select boxes (COFOG, MDA) */
         label {
-            color: white !important;  /* White text for labels like 'Select Government Sector (COFOG)' */
-            font-weight: bold;
+            color: white !important;
+            font-weight: bold !important;
         }
-        .stTitle {
-            font-size: 36px;
-            color: white;
+        /* Subheader orange for accents like 'Output KPIs' */
+        .orange-subheader {
+            color: #ff7f0e !important;
+            font-size: 22px !important;
             font-weight: bold;
+            padding-top: 1rem;
         }
-        .stSubheader {
-            color: #ff7f0e; /* Orange accent for subheaders */
-            font-size: 24px;
+        /* Green background with white text for outcome */
+        .custom-success {
+            background-color: #28a745;
+            color: white !important;
             font-weight: bold;
-        }
-        .stMarkdown {
-            color: white;
-        }
-        .stSuccess {
-            background-color: #28a745; /* Green background */
-            color: white !important;   /* White text for outcome */
-            font-weight: bold;
+            padding: 12px;
             border-radius: 10px;
-            padding: 10px;
+            font-size: 16px;
         }
+        /* Input boxes - white bg, navy text */
         input, select, textarea {
             background-color: white !important;
             color: #001f3f !important;
+            font-weight: bold;
         }
-        .stSelectbox>div {
-            color: white !important;
-        }
-        .stButton {
+        /* Button style */
+        button {
             background-color: #ff7f0e !important;
             color: white !important;
+            font-weight: bold;
         }
     </style>
     """,
