@@ -7,7 +7,6 @@ st.set_page_config(page_title="Government KPI Directory", layout="wide")
 # Define direct image URLs
 background_image_url = 'https://drive.google.com/uc?export=view&id=1aI5XNpgvDgwN0cgFN1r9UMCl5IBiqA5K'
 header_image_url = 'https://drive.google.com/uc?export=view&id=1a3BXO0ASkFSrtxWuwvrBg4oI1u7PvbGs'
-kpi_icon_url = 'https://cdn-icons-png.flaticon.com/512/1828/1828911.png'  # Replaced invalid link with usable one
 
 # Add custom CSS
 st.markdown(
@@ -632,7 +631,7 @@ kpi_directory = {
 
 # Header display
 def header():
-    st.image(header_image_url, use_column_width=True)
+    st.image(header_image_url, use_container_width=True)
     st.title("📊 Government Programme/Project KPI Directory")
     st.markdown("Use this tool to generate SMART KPIs for various government projects.")
 
