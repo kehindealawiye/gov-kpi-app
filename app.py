@@ -1,9 +1,49 @@
 import streamlit as st
 import json
 
+# Set page configuration
+st.set_page_config(page_title="Government KPI Directory", layout="wide")
+
+# Define direct image URLs
+background_image_url = 'https://drive.google.com/uc?export=view&id=1aI5XNpgvDgwN0cgFN1r9UMCl5IBiqA5K'
+header_image_url = 'https://drive.google.com/uc?export=view&id=1a3BXO0ASkFSrtxWuwvrBg4oI1u7PvbGs'
+kpi_icon_url = 'https://cdn-icons-png.flaticon.com/512/1828/1828911.png'  # Replaced invalid link with usable one
+
+# Add custom CSS
+st.markdown(
+    f"""
+    <style>
+        .stApp {{
+            background: url('{background_image_url}') no-repeat center center fixed;
+            background-size: cover;
+        }}
+        .stTitle {{
+            font-size: 36px;
+            color: white;
+            font-weight: bold;
+        }}
+        .stSubheader {{
+            color: #ff7f0e;
+            font-size: 24px;
+        }}
+        .stMarkdown {{
+            color: white;
+        }}
+        .stSuccess {{
+            background-color: #28a745;
+            color: white;
+            font-weight: bold;
+        }}
+        .stSelectbox, .stButton, .stTextInput {{
+            background-color: #003366;
+            color: white;
+        }}
+    </style>
+    """, unsafe_allow_html=True)
+
 # Load KPI and Outcome directory from uploaded document
 kpi_directory = {
-  "Economic Affairs": {
+   "Economic Affairs": {
     "Office of Infrastructure": {
       "kpis": [
         "% work to be done",
@@ -111,6 +151,28 @@ kpi_directory = {
         "Number of energy audit reports completed"
       ],
       "outcome": "Improved energy efficiency and access to clean energy"
+    },
+    "Ministry of Commerce, Industry and Cooperatives": {
+      "kpis": [
+        "% work to be done",
+        "Number of MSMEs supported",
+        "Number of business hubs established",
+        "Number of cooperatives formed or supported",
+        "Number of enterprises receiving training",
+        "Amount of investment attracted into the industrial zones",
+        "Number of corporate assembly meetings held"
+      ],
+      "outcome": "Enhanced enterprise growth and economic diversification"
+    },
+    "Lagos State Infrastructure Asset Management Agency": {
+      "kpis": [
+        "% work to be done",
+        "Number of state infrastructure facilities maintained",
+        "Number of educational facilities upgraded",
+        "Amount of savings generated through improved asset management",
+        "Number of preventive maintenance programs completed"
+      ],
+      "outcome": "Increased lifespan and efficiency of public infrastructure"
     }
   },
   "General Public Services": {
@@ -568,15 +630,12 @@ kpi_directory = {
   }
 }
 
-# Page configuration
-st.set_page_config(page_title="Government KPI Directory", layout="wide")
-
-# Header function
+# Header display
 def header():
+    st.image(header_image_url, use_column_width=True)
     st.title("📊 Government Programme/Project KPI Directory")
     st.markdown("Use this tool to generate SMART KPIs for various government projects.")
 
-# Display header
 header()
 
 # Sector selection
@@ -589,7 +648,11 @@ if sector:
     if mda:
         st.subheader(f"Output KPIs for {mda}")
         for kpi in kpi_directory[sector][mda]["kpis"]:
-            st.write(f"- {kpi}")
+            cols = st.columns([0.1, 0.9])
+            with cols[0]:
+                st.image(kpi_icon_url, width=30)
+            with cols[1]:
+                st.write(kpi)
 
         st.subheader("Outcome Statement")
         st.success(kpi_directory[sector][mda]["outcome"])
