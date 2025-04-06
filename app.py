@@ -8,47 +8,33 @@ st.markdown(
     """
     <style>
         .stApp {
-            background-color: #001f3f !important; /* Navy blue background */
-        }
-        /* Make all body text white */
-        html, body, [class*="css"]  {
+            background-color: #001f3f !important; /* Navy blue */
             color: white !important;
         }
-        /* Title and subheader white text */
-        h1, h2, h3, h4 {
+        html, body, [class*="css"] {
+            color: white !important;
+            background-color: #001f3f !important;
+        }
+        h1, h2, h3, h4, h5, h6 {
             color: white !important;
         }
-        /* Label for select boxes (COFOG, MDA) */
-        label {
+        label, .stText, .stSelectbox {
             color: white !important;
-            font-weight: bold !important;
         }
-        /* Subheader orange for accents like 'Output KPIs' */
-        .orange-subheader {
-            color: #ffffff !important;
-            font-size: 22px !important;
-            font-weight: bold;
-            padding-top: 1rem;
-        }
-        /* Green background with white text for outcome */
-        .custom-success {
-            background-color: #ffffff;
+        .stMarkdown {
             color: white !important;
-            font-weight: bold;
-            padding: 12px;
-            border-radius: 10px;
-            font-size: 16px;
         }
-        /* Input boxes - white bg, navy text */
+        .stSelectbox > div {
+            color: #001f3f !important;  /* Navy text inside white box */
+        }
         input, select, textarea {
             background-color: white !important;
             color: #001f3f !important;
             font-weight: bold;
         }
-        /* Button style */
-        button {
-            background-color: #ffffff !important;
-            color: white !important;
+        .stButton button {
+            background-color: white !important;
+            color: #001f3f !important;
             font-weight: bold;
         }
     </style>
