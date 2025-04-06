@@ -1,44 +1,58 @@
 import streamlit as st
 import json
 
-# Set page configuration
-st.set_page_config(page_title="Government KPI Directory", layout="wide")
-
-# Define direct image URLs
-background_image_url = 'https://drive.google.com/uc?export=view&id=1aI5XNpgvDgwN0cgFN1r9UMCl5IBiqA5K'
-header_image_url = 'https://drive.google.com/uc?export=view&id=1a3BXO0ASkFSrtxWuwvrBg4oI1u7PvbGs'
-
-# Add custom CSS
+# Add custom CSS for background image, text color, and accents
 st.markdown(
-    f"""
+    """
     <style>
-        .stApp {{
-            background: url('https://drive.google.com/uc?export=view&id=1aI5XNpgvDgwN0cgFN1r9UMCl5IBiqA5K') no-repeat center center fixed;
-            background-size: cover;
-        }}
-        .stTitle {{
+        /* Set full background color */
+        html, body, [class*="stApp"] {
+            background-color: #001f3f; /* Navy blue background */
+            color: white;
+        }
+
+        /* Title and headers */
+        .stTitle {
             font-size: 36px;
             color: white;
             font-weight: bold;
-        }}
-        .stSubheader {{
-            color: #ff7f0e;
+        }
+        .stSubheader {
+            color: #ff7f0e; /* Orange accent for subheader */
             font-size: 24px;
-        }}
-        .stMarkdown {{
-            color: white;
-        }}
-        .stSuccess {{
+        }
+
+        /* Markdown text */
+        .stMarkdown, .stText, .stCaption, .stHeader {
+            color: white !important;
+        }
+
+        /* Success boxes */
+        .stSuccess {
             background-color: #28a745;
             color: white;
             font-weight: bold;
-        }}
-        .stSelectbox, .stButton, .stTextInput {{
-            background-color: #003366;
-            color: white;
-        }}
+        }
+
+        /* Input boxes */
+        input, textarea, .stTextInput > div > div > input {
+            background-color: white !important;
+            color: black !important;
+        }
+
+        /* Dropdowns and buttons */
+        .stSelectbox, .stButton {
+            background-color: white !important;
+            color: black !important;
+        }
+
+        /* Fix selectbox text color */
+        .stSelectbox > div > div {
+            color: black !important;
+        }
     </style>
     """, unsafe_allow_html=True)
+
 
 # Load KPI and Outcome directory from uploaded document
 kpi_directory = {
@@ -629,12 +643,15 @@ kpi_directory = {
   }
 }
 
-# Header display
-def header():
-    st.image(header_image_url, use_container_width=True)
-    st.title("📊 Government Programme/Project KPI Directory")
-    st.markdown("Use this tool to generate SMART KPIs for various Government Programmes and Projects.")
+# Page configuration
+st.set_page_config(page_title="Government KPI Directory", layout="wide")
 
+# Header function
+def header():
+    st.title("📊 Government Programme/Project KPI Directory")
+    st.markdown("Use this tool to generate SMART KPIs for various government projects.")
+
+# Display header
 header()
 
 # Sector selection
@@ -647,9 +664,7 @@ if sector:
     if mda:
         st.subheader(f"Output KPIs for {mda}")
         for kpi in kpi_directory[sector][mda]["kpis"]:
-            cols = st.columns([0.1, 0.9])
-            with cols[0]:
-                st.write(kpi)
+            st.write(f"- {kpi}")
 
         st.subheader("Outcome Statement")
         st.success(kpi_directory[sector][mda]["outcome"])
