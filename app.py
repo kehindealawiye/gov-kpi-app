@@ -9,33 +9,21 @@ st.markdown(
     <style>
         .stApp {
             background-color: #001f3f !important; /* Navy blue */
-            color: white !important;
         }
-        html, body, [class*="css"] {
+        h1, h2, h3, h4, h5, h6, label, .stText, .stMarkdown, .stSelectbox > div {
             color: white !important;
-            background-color: #001f3f !important;
-        }
-        h1, h2, h3, h4, h5, h6 {
-            color: white !important;
-        }
-        label, .stText, .stSelectbox {
-            color: white !important;
-        }
-        .stMarkdown {
-            color: white !important;
-        }
-        .stSelectbox > div {
-            color: #001f3f !important;  /* Navy text inside white box */
         }
         input, select, textarea {
             background-color: white !important;
             color: #001f3f !important;
             font-weight: bold;
         }
-        .stButton button {
-            background-color: white !important;
-            color: #001f3f !important;
-            font-weight: bold;
+        .stAlert-success {
+            background-color: #006400 !important;  /* Deep green */
+            color: white !important;
+            font-weight: bold !important;
+            border-radius: 5px;
+            padding: 10px;
         }
     </style>
     """,
