@@ -1,6 +1,8 @@
 import streamlit as st
 import json
 
+st.set_page_config(page_title="Government KPI Directory", layout="wide")
+
 # Add custom CSS for background image, text color, and accents
 st.markdown(
     """
