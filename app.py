@@ -25,14 +25,14 @@ st.markdown(
         }
         /* Subheader orange for accents like 'Output KPIs' */
         .orange-subheader {
-            color: #ff7f0e !important;
+            color: #ffffff !important;
             font-size: 22px !important;
             font-weight: bold;
             padding-top: 1rem;
         }
         /* Green background with white text for outcome */
         .custom-success {
-            background-color: #28a745;
+            background-color: #ffffff;
             color: white !important;
             font-weight: bold;
             padding: 12px;
@@ -47,7 +47,7 @@ st.markdown(
         }
         /* Button style */
         button {
-            background-color: #ff7f0e !important;
+            background-color: #ffffff !important;
             color: white !important;
             font-weight: bold;
         }
