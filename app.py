@@ -7,53 +7,52 @@ st.set_page_config(page_title="Government KPI Directory", layout="wide")
 st.markdown(
     """
     <style>
-        /* Set full background color */
-        html, body, [class*="stApp"] {
+        body {
             background-color: #001f3f; /* Navy blue background */
             color: white;
         }
-
-        /* Title and headers */
+        .stApp {
+            background-color: #001f3f !important; /* Ensure background applies to full app */
+        }
+        label {
+            color: white !important;  /* White text for labels like 'Select Government Sector (COFOG)' */
+            font-weight: bold;
+        }
         .stTitle {
             font-size: 36px;
             color: white;
             font-weight: bold;
         }
         .stSubheader {
-            color: #ff7f0e; /* Orange accent for subheader */
+            color: #ff7f0e; /* Orange accent for subheaders */
             font-size: 24px;
-        }
-
-        /* Markdown text */
-        .stMarkdown, .stText, .stCaption, .stHeader {
-            color: white !important;
-        }
-
-        /* Success boxes */
-        .stSuccess {
-            background-color: #28a745;
-            color: white;
             font-weight: bold;
         }
-
-        /* Input boxes */
-        input, textarea, .stTextInput > div > div > input {
-            background-color: white !important;
-            color: black !important;
+        .stMarkdown {
+            color: white;
         }
-
-        /* Dropdowns and buttons */
-        .stSelectbox, .stButton {
-            background-color: white !important;
-            color: black !important;
+        .stSuccess {
+            background-color: #28a745; /* Green background */
+            color: white !important;   /* White text for outcome */
+            font-weight: bold;
+            border-radius: 10px;
+            padding: 10px;
         }
-
-        /* Fix selectbox text color */
-        .stSelectbox > div > div {
-            color: black !important;
+        input, select, textarea {
+            background-color: white !important;
+            color: #001f3f !important;
+        }
+        .stSelectbox>div {
+            color: white !important;
+        }
+        .stButton {
+            background-color: #ff7f0e !important;
+            color: white !important;
         }
     </style>
-    """, unsafe_allow_html=True)
+    """,
+    unsafe_allow_html=True
+)
 
 
 # Load KPI and Outcome directory from uploaded document
