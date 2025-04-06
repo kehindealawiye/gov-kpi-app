@@ -564,22 +564,51 @@ kpi_directory = {
         "Number of hospitality tourism establishments to be monitored for compliance with standards"
       ],
       "outcome": "Promoted tourism, preserved cultural heritage, and supported the creative economy in Lagos"
-    }
+     }
   }
 }
-st.title("KPI and Outcome Suggestion Directory")
 
-# Sector selection
-sector = st.selectbox("Select Government Sector:", list(kpi_directory.keys()))
+# Page configuration
+st.set_page_config(page_title="Government KPI Directory", layout="wide")
 
-if sector:
-    mda_list = list(kpi_directory[sector].keys())
-    mda = st.selectbox("Select MDA:", mda_list)
+# Header function
+def header():
+    st.title("📊 Government Programme/Project KPI Directory")
+    st.markdown("Use this tool to generate SMART KPIs for various government projects.")
 
-    if mda:
-        st.subheader(f"Output KPIs for {mda}")
-        for kpi in kpi_directory[sector][mda]["kpis"]:
-            st.markdown(f"- {kpi}")
+# Display header
+header()
 
-        st.subheader("Outcome Statement")
-        st.markdown(f"**{kpi_directory[sector][mda]['outcome']}**")
+# Sector selection from sidebar
+sector = st.sidebar.selectbox("Select Government Sector (COFOG)", list(kpi_directory.keys()))
+MDA = st.sidebar.text_input("Enter MDA")
+
+if st.sidebar.button("Generate KPIs"):
+    if sector:
+        st.subheader(f"KPIs for {sector}")
+        if sector in kpi_directory:
+            if MDA:
+                # If MDA is entered
+                if MDA in kpi_directory[sector]:
+                    st.subheader(f"Output KPIs for {MDA}")
+                    for kpi in kpi_directory[sector][MDA]["kpis"]:
+                        st.write(f"- {kpi}")
+
+                    st.subheader("Outcome Statement")
+                    st.success(kpi_directory[sector][MDA]["outcome"])
+                else:
+                    st.error(f"Unknown MDA: {MDA}. Please select a valid MDA from {list(kpi_directory[sector].keys())}.")
+            else:
+                # If MDA is not entered, show all MDAs
+                mda_list = list(kpi_directory[sector].keys())
+                mda = st.selectbox("Select MDA:", mda_list)
+
+                if mda:
+                    st.subheader(f"Output KPIs for {mda}")
+                    for kpi in kpi_directory[sector][mda]["kpis"]:
+                        st.write(f"- {kpi}")
+
+                    st.subheader("Outcome Statement")
+                    st.success(kpi_directory[sector][mda]["outcome"])
+        else:
+            st.error("Invalid sector selected.")
