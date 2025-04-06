@@ -19,7 +19,7 @@ st.markdown(
             font-weight: bold;
         }
         .stAlert-success {
-            background-color: #ffffff !important;  /* Deep green */
+            background-color: #ffffff !important;  /* white */
             color: white !important;
             font-weight: bold !important;
             border-radius: 5px;
