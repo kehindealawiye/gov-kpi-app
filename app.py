@@ -645,9 +645,6 @@ kpi_directory = {
   }
 }
 
-# Page configuration
-st.set_page_config(page_title="Government KPI Directory", layout="wide")
-
 # Header function
 def header():
     st.title("📊 Government Programme/Project KPI Directory")
