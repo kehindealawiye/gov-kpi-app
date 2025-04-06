@@ -13,7 +13,7 @@ st.markdown(
     f"""
     <style>
         .stApp {{
-            background: url('{background_image_url}') no-repeat center center fixed;
+            background: url('https://drive.google.com/uc?export=view&id=1aI5XNpgvDgwN0cgFN1r9UMCl5IBiqA5K') no-repeat center center fixed;
             background-size: cover;
         }}
         .stTitle {{
@@ -633,7 +633,7 @@ kpi_directory = {
 def header():
     st.image(header_image_url, use_container_width=True)
     st.title("📊 Government Programme/Project KPI Directory")
-    st.markdown("Use this tool to generate SMART KPIs for various government projects.")
+    st.markdown("Use this tool to generate SMART KPIs for various Government Programmes and Projects.")
 
 header()
 
@@ -649,8 +649,6 @@ if sector:
         for kpi in kpi_directory[sector][mda]["kpis"]:
             cols = st.columns([0.1, 0.9])
             with cols[0]:
-                st.image(kpi_icon_url, width=30)
-            with cols[1]:
                 st.write(kpi)
 
         st.subheader("Outcome Statement")
